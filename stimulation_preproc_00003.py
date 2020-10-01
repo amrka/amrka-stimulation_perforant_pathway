@@ -222,7 +222,7 @@ def coreg(bold_image):
     moving = ants.image_read(bold_image)
     # you have to setup the outprefix, otherwise it will send the output to tmp folder
 
-    mytx = ants.registration(fixed=fixed, moving=moving, type_of_transform='Rigid',
+    mytx = ants.registration(fixed=fixed, moving=moving, type_of_transform='Rigid', aff_metric='GC',
                              outprefix='bold_2_anat_sub-{0}'.format(subj_no))
 
     mywarpedimage = ants.apply_transforms(fixed=fixed, moving=moving,
