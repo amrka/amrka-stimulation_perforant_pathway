@@ -66,7 +66,7 @@ infosource.iterables = [('subject_id', subject_list),
 # functional runs
 templates = {
 
-    'preproc_img': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_Preproc_OutputDir/preproc_img/{frequency_id}_{session_id}_subj_{subject_id}/afni_2d_smoothed_all_maths_filt_maths.nii.gz',
+    'preproc_img': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_Preproc_OutputDir/preproc_img/{frequency_id}_{session_id}_subj_{subject_id}/afni_2d_smoothed_maths_filt_maths.nii.gz',
     'bold_brain': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_Preproc_OutputDir/bold_brain/{frequency_id}_{session_id}_subj_{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}_roi_masked.nii.gz',
     'bold_mask': '/media/amr/Amr_4TB/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz'
 }
