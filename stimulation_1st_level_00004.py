@@ -178,6 +178,16 @@ slicer_f_contrast = Node(fsl.Slicer(), name='generate_f_contrast_image')
 slicer_f_contrast.inputs.all_axial = True
 slicer_f_contrast.inputs.image_width = 500
 
+# ============================================================================================================================
+# In[15]:
+# get average timeseries using the tstat threshold as a mask
+
+
+get_timeseries = Node(fsl.ImageMeants(), name='get_timeseries')
+get_timeseries.inputs.out_file = 'average_timeseries.txt'
+
+# ============================================================================================================================
+
 
 stimulation_1st_level.connect([
 
@@ -224,6 +234,9 @@ stimulation_1st_level.connect([
 
     (overlay_f_contrast, slicer_f_contrast, [('out_file', 'in_file')]),
 
+    (selectfiles, get_timeseries, [('preproc_img', 'in_file')]),
+    (clustering_t, get_timeseries, [('threshold_file', 'mask')]),
+
     # ===================================================================================================
 
     (film_gls, datasink, [('copes', 'copes_1st_level'),
@@ -232,6 +245,8 @@ stimulation_1st_level.connect([
     (slicer_t_contrast, datasink, [('out_file', 't_contrast_image')]),
 
     (slicer_f_contrast, datasink, [('out_file', 'f_contrast_image')]),
+
+    (get_timeseries, datasink, [('out_file', 'average_timeseries')])
 
 
 
