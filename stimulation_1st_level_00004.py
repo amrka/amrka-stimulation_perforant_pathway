@@ -90,14 +90,14 @@ datasink.inputs.substitutions = substitutions
 # during the preproceesing step
 # plus it makes it easier to calculate % change (ppheights)
 #
-# design = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design.mat'
-# t_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design.con'
-# f_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design.fts'
+# design = '/media/amr/Amr_4TB/Work/stimulation/1st_Level_Designs/design.mat'
+# t_contrast = '/media/amr/Amr_4TB/Work/stimulation/1st_Level_Designs/design.con'
+# f_contrast = '/media/amr/Amr_4TB/Work/stimulation/1st_Level_Designs/design.fts'
 
 
-design = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design_no_filter.mat'
-t_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design_no_filter.con'
-f_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design_no_filter.fts'
+design = '/media/amr/Amr_4TB/Work/stimulation/1st_Level_Designs/design_no_filter.mat'
+t_contrast = '/media/amr/Amr_4TB/Work/stimulation/1st_Level_Designs/design_no_filter.con'
+f_contrast = '/media/amr/Amr_4TB/Work/stimulation/1st_Level_Designs/design_no_filter.fts'
 
 film_gls = Node(fsl.FILMGLS(), name='Fit_Design_to_Timeseries')
 film_gls.inputs.design_file = design
