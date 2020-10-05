@@ -69,8 +69,8 @@ infosource.iterables = [('frequencies', frequency_list),
 # ==========================================================================================================================================================
 # In[4]:
 
-template_brain = '/home/in/aeed/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz'
-template_mask = '/home/in/aeed/Work/October_Acquistion/Anat_Template_Enhanced_Mask.nii.gz'
+template_brain = '/home/in/aeed/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz'
+template_mask = '/home/in/aeed/Work/October_Acquistion/anat_template_enhanced_mask_2.nii.gz'
 
 templates = {
 
