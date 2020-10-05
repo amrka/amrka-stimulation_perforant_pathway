@@ -120,8 +120,8 @@ datasink_anat.inputs.substitutions = substitutions
 # ========================================================================================================
 # In[6]:
 
-template_brain = '/media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz'
-template_mask = '/media/amr/Amr_4TB/Work/October_Acquistion/Anat_Template_Enhanced_Mask.nii.gz'
+template_brain = '/media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz'
+template_mask = '/media/amr/Amr_4TB/Work/October_Acquistion/anat_template_enhanced_mask_2.nii.gz'
 
 TR = 2.0
 
