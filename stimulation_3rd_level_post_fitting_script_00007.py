@@ -254,4 +254,5 @@ proc_3rd_level.connect([
 
 proc_3rd_level.write_graph(graph2use='colored', format='png', simple_form=True)
 
-proc_3rd_level.run('MultiProc', plugin_args={'n_procs': 8})
+proc_3rd_level.run(plugin='SLURM', plugin_args={
+                   'dont_resubmit_completed_jobs': True, 'max_jobs': 50})

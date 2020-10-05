@@ -400,6 +400,7 @@ stimulation_2nd_level.connect([
 
 stimulation_2nd_level.write_graph(graph2use='colored', format='png', simple_form=True)
 
-stimulation_2nd_level.run('MultiProc', plugin_args={'n_procs': 8})
+stimulation_2nd_level.run(plugin='SLURM', plugin_args={
+                          'dont_resubmit_completed_jobs': True, 'max_jobs': 50})
 
 # need number for l2model

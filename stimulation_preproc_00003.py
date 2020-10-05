@@ -457,5 +457,6 @@ stimulation_preproc.connect([
 
 stimulation_preproc.write_graph(graph2use='colored', format='png', simple_form=True)
 
-# stimulation_preproc.run(plugin='SLURM',plugin_args={'dont_resubmit_completed_jobs': True, 'max_jobs':50})
-stimulation_preproc.run('MultiProc', plugin_args={'no_procs': 8})
+stimulation_preproc.run(plugin='SLURM', plugin_args={
+                        'dont_resubmit_completed_jobs': True, 'max_jobs': 50})
+# stimulation_preproc.run('MultiProc', plugin_args={'no_procs': 8})
