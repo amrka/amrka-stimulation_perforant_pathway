@@ -64,8 +64,8 @@ infosource.iterables = [('subject_id', subject_list)]
 # functional run-s
 
 
-template_brain = '/home/in/aeed/Work/October_Acquistion/Anat_Template_Enhanced.nii.gz'
-template_mask = '/home/in/aeed/Work/October_Acquistion/Anat_Template_Enhanced_Mask.nii.gz'
+template_brain = '/home/in/aeed/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz'
+template_mask = '/home/in/aeed/Work/October_Acquistion/anat_template_enhanced_mask_2.nii.gz'
 
 TR = 2.0
 no_runs = 3
