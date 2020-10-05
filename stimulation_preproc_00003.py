@@ -28,7 +28,7 @@ MatlabCommand.set_default_matlab_cmd("matlab -nodesktop -nosplash")
 # ========================================================================================================
 # In[2]:
 
-experiment_dir = '/media/amr/Amr_4TB/Work/stimulation'
+experiment_dir = '/home/in/aeed/Work/stimulation'
 
 
 subject_list = ['003', '005', '008', '011',
@@ -78,7 +78,7 @@ infosource_func.iterables = [('subject_id', subject_list),
 # /home/in/aeed/poldrack_gabmling/ds000005/sub-01/anat/sub-01_T1w.nii.gz
 # anatomical images
 templates_anat = {
-    'anat': '/media/amr/Amr_4TB/Work/stimulation/Data/{subject_id}/Anat_{subject_id}_bet.nii.gz'
+    'anat': '/home/in/aeed/Work/stimulation/Data/{subject_id}/Anat_{subject_id}_bet.nii.gz'
 }
 
 selectfiles_anat = Node(SelectFiles(templates_anat,
@@ -89,8 +89,8 @@ selectfiles_anat = Node(SelectFiles(templates_anat,
 # sub-01_task-mixedgamblestask_run-01_bold.nii.gz
 # functional runs
 templates_func = {
-    'bold': '/media/amr/Amr_4TB/Work/stimulation/Data/{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}.nii.gz',
-    'bold_mask': '/media/amr/Amr_4TB/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz'
+    'bold': '/home/in/aeed/Work/stimulation/Data/{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}.nii.gz',
+    'bold_mask': '/home/in/aeed/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz'
 }
 
 selectfiles_func = Node(SelectFiles(templates_func,
@@ -120,8 +120,8 @@ datasink_anat.inputs.substitutions = substitutions
 # ========================================================================================================
 # In[6]:
 
-template_brain = '/media/amr/Amr_4TB/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz'
-template_mask = '/media/amr/Amr_4TB/Work/October_Acquistion/anat_template_enhanced_mask_2.nii.gz'
+template_brain = '/home/in/aeed/Work/October_Acquistion/anat_temp_enhanced_3.nii.gz'
+template_mask = '/home/in/aeed/Work/October_Acquistion/anat_template_enhanced_mask_2.nii.gz'
 
 TR = 2.0
 
@@ -216,7 +216,7 @@ def coreg(bold_image):
     cwd = os.getcwd()
     subj_no = re.findall('\d+', cwd)[-1]
 
-    img = '/media/amr/Amr_4TB/Work/stimulation/Data/{0}/Anat_{0}_bet.nii.gz'.format(subj_no)
+    img = '/home/in/aeed/Work/stimulation/Data/{0}/Anat_{0}_bet.nii.gz'.format(subj_no)
 
     fixed = ants.image_read(img)
     moving = ants.image_read(bold_image)

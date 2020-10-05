@@ -27,7 +27,7 @@ MatlabCommand.set_default_matlab_cmd("matlab -nodesktop -nosplash")
 
 # ============================================================================================================================
 # In[2]:
-experiment_dir = '/media/amr/Amr_4TB/Work/stimulation'
+experiment_dir = '/home/in/aeed/Work/stimulation'
 
 
 subject_list = ['003', '005', '008', '011',
@@ -62,13 +62,13 @@ infosource.iterables = [('subject_id', subject_list),
 # ============================================================================================================================
 # In[4]:
 # sub-001_task-MGT_run-02_bold.nii.gz, sub-001_task-MGT_run-02_sbref.nii.gz
-# /media/amr/Amr_4TB/MGT_poldrack/output_MGT_poldrack_preproc_preproc/preproc_img/run-04sub-119/afni_2d_smoothed_all_maths_filt_maths.nii.gz
+# /home/in/aeed/MGT_poldrack/output_MGT_poldrack_preproc_preproc/preproc_img/run-04sub-119/afni_2d_smoothed_all_maths_filt_maths.nii.gz
 # functional runs
 templates = {
 
-    'preproc_img': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_Preproc_OutputDir/preproc_img/{frequency_id}_{session_id}_subj_{subject_id}/afni_2d_smoothed_maths_filt_maths.nii.gz',
-    'bold_brain': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_Preproc_OutputDir/bold_brain/{frequency_id}_{session_id}_subj_{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}_roi_masked.nii.gz',
-    'bold_mask': '/media/amr/Amr_4TB/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz'
+    'preproc_img': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_OutputDir/preproc_img/{frequency_id}_{session_id}_subj_{subject_id}/afni_2d_smoothed_maths_filt_maths.nii.gz',
+    'bold_brain': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_OutputDir/bold_brain/{frequency_id}_{session_id}_subj_{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}_roi_masked.nii.gz',
+    'bold_mask': '/home/in/aeed/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz'
 }
 
 
@@ -90,14 +90,14 @@ datasink.inputs.substitutions = substitutions
 # during the preproceesing step
 # plus it makes it easier to calculate % change (ppheights)
 #
-# design = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design.mat'
-# t_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design.con'
-# f_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design.fts'
+# design = '/home/in/aeed/Work/Stimulation/1st_Level_Designs/design.mat'
+# t_contrast = '/home/in/aeed/Work/Stimulation/1st_Level_Designs/design.con'
+# f_contrast = '/home/in/aeed/Work/Stimulation/1st_Level_Designs/design.fts'
 
 
-design = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design_no_filter.mat'
-t_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design_no_filter.con'
-f_contrast = '/media/amr/Amr_4TB/Work/Stimulation/1st_Level_Designs/design_no_filter.fts'
+design = '/home/in/aeed/Work/Stimulation/1st_Level_Designs/design_no_filter.mat'
+t_contrast = '/home/in/aeed/Work/Stimulation/1st_Level_Designs/design_no_filter.con'
+f_contrast = '/home/in/aeed/Work/Stimulation/1st_Level_Designs/design_no_filter.fts'
 
 film_gls = Node(fsl.FILMGLS(), name='Fit_Design_to_Timeseries')
 film_gls.inputs.design_file = design
