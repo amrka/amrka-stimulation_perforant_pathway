@@ -70,7 +70,7 @@ templates = {
     'bold_brain': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_OutputDir/bold_brain/{frequency_id}_{session_id}_subj_{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}_roi_masked.nii.gz',
     'bold_mask': '/home/in/aeed/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz',
 
-    'tem2anat': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_subject_id_{subject_id}/reg_T1_2_temp/transform_InverseWarped.nii.gz',
+    'tem2anat': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_subject_id_{subject_id}/reg_T1_2_temp/transformInverseComposite.h5',
     'ant2func': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_frequency_id_{frequency_id}_session_id_{session_id}_subject_id_{subject_id}/coreg/bold_2_anat_sub-{subject_id}0GenericAffine.mat',
     'anat_img': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_subject_id_{subject_id}/biasfield_correction_anat/Anat_{subject_id}_bet_corrected.nii.gz'}
 
