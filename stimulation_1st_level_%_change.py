@@ -121,7 +121,11 @@ transform_hpc_mask.inputs.invert_transform_flags = [False, True]
 # fslmaths filtered_func_data -mul scale_factor -div mean_func
 # fslmeants -i output_image -m mask
 
-scale_factor = -80.61686
+# scale_factor = -80.61686
+# the scale is probably off by 100x factor, because the timeseries is in hunderedth range
+# it makes sense since the voxels value are scaled 100s higher than the human data, probably from the machine
+scale_factor = -.8061686
+
 
 mul_by_scaling_factor = Node(fsl.BinaryMaths(), name='multiply_by_scaling_factor')
 mul_by_scaling_factor.inputs.operation = 'mul'
