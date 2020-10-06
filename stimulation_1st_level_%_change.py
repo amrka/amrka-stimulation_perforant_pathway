@@ -69,7 +69,9 @@ templates = {
     'preproc_img': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_OutputDir/preproc_img/{frequency_id}_{session_id}_subj_{subject_id}/afni_2d_smoothed_maths_filt_maths.nii.gz',
     'bold_brain': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_OutputDir/bold_brain/{frequency_id}_{session_id}_subj_{subject_id}/Stim_{subject_id}_??_{frequency_id}_{session_id}_roi_masked.nii.gz',
     'bold_mask': '/home/in/aeed/Work/stimulation/Data/{subject_id}/EPI_{subject_id}_Mask.nii.gz',
-    'inverse_transform': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_subject_id_{subject_id}/reg_T1_2_temp/transform_InverseWarped.nii.gz',
+
+    'tem2anat': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_subject_id_{subject_id}/reg_T1_2_temp/transform_InverseWarped.nii.gz',
+    'ant2func': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_frequency_id_{frequency_id}_session_id_{session_id}_subject_id_{subject_id}/coreg/bold_2_anat_sub-{subject_id}0GenericAffine.mat',
     'anat_img': '/home/in/aeed/Work/stimulation/Stimulation_Preproc_WorkingDir/stimulation_preproc/_subject_id_{subject_id}/biasfield_correction_anat/Anat_{subject_id}_bet_corrected.nii.gz'}
 
 
@@ -102,10 +104,15 @@ get_filtered_mean.inputs.out_file = 'filtered_img_mean.nii.gz'
 
 # ============================================================================================================================
 # transform the hpc mask to each subject's space
+# In[10]:
+# Merge the trasnforms
+merge_transforms = Node(Merge(2), name='merge_transforms')
+
 
 transform_hpc_mask = Node(ants.ApplyTransforms(), name='transform_hpc_mask')
 transform_hpc_mask.inputs.input_image = template_hpc_mask
 transform_hpc_mask.inputs.interpolation = 'NearestNeighbor'
+transform_hpc_mask.inputs.invert_transform_flags = [False, True]
 
 
 # ============================================================================================================================
@@ -143,8 +150,12 @@ stimulation_1st_level_percent_change.connect([
 
     (selectfiles, get_filtered_mean, [('preproc_img', 'in_file')]),
 
-    (selectfiles, transform_hpc_mask, [('anat_img', 'reference_image'),
-                                       ('inverse_transform', 'transforms')]),
+    (selectfiles, merge_transforms, [('tem2anat', 'in1')]),
+    (selectfiles, merge_transforms, [('ant2func', 'in2')]),
+
+
+    (selectfiles, transform_hpc_mask, [('bold_brain', 'reference_image')]),
+    (merge_transforms, transform_hpc_mask, [('out', 'transforms')]),
 
     (selectfiles, mul_by_scaling_factor, [('preproc_img', 'in_file')]),
 
