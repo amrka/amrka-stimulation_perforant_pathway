@@ -119,11 +119,13 @@ scale_factor = -80.61686
 mul_by_scaling_factor = Node(fsl.BinaryMaths(), name='multiply_by_scaling_factor')
 mul_by_scaling_factor.inputs.operation = 'mul'
 mul_by_scaling_factor.inputs.operand_value = scale_factor
+mul_by_scaling_factor.inputs.out_file = 'multiplied_by_scaling_factor.nii.gz'
 
 # ============================================================================================================================
 # divide by mean image
 div_by_mean_img = Node(fsl.BinaryMaths(), name='div_by_mean_img')
 div_by_mean_img.inputs.operation = 'div'
+div_by_mean_img.inputs.out_file = 'divided_by_mean_img.nii.gz'
 
 # ============================================================================================================================
 # fslmeants to get the timesereis
