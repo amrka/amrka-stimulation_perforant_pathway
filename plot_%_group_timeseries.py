@@ -44,7 +44,7 @@ def plot_av_percent_change(frequency, genotype):
     mean_ts = np.mean(list_ts_arrays, axis=0)
     mean_ts_df = pd.DataFrame(mean_ts)
     # smoothing for the signal
-    # the window size of here because the BOLD takes 5 sec to peak
+
     smooth_mean = mean_ts_df.rolling(5).mean()
     sem_ts = stats.sem(list_ts_arrays, axis=0)  # sem as in standard error of the mean
 
