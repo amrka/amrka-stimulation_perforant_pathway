@@ -93,8 +93,11 @@ templates = {
 
     'varcope1_40Hz_r1': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_1st_level_OutputDir/varcopes_1st_level/40Hz_run001_subj_{subject_id}/varcope1.nii.gz',
     'varcope1_40Hz_r2': '/media/amr/Amr_4TB/Work/stimulation/Stimulation_1st_level_OutputDir/varcopes_1st_level/40Hz_run002_subj_{subject_id}/varcope1.nii.gz',
-
     # ==========================================================================================================================================================
+
+    "percent_change_r1": '/media/amr/Amr_4TB/Work/stimulation/Stimulation_1st_level_WorkingDir_%_change/stimulation_1st_level_percent_change/_frequency_id_40Hz_session_id_run001_subject_id_{subject_id}/get_percent_change_timeseries/percent_change_timeseries.txt',
+    "percent_change_r2": '/media/amr/Amr_4TB/Work/stimulation/Stimulation_1st_level_WorkingDir_%_change/stimulation_1st_level_percent_change/_frequency_id_40Hz_session_id_run002_subject_id_{subject_id}/get_percent_change_timeseries/percent_change_timeseries.txt',
+
 }
 
 
@@ -313,6 +316,22 @@ varcope1_2ndlevel_2_template.inputs.output_image = 'varcope1_2ndlevel_2_template
 
 # ==========================================================================================================================================================
 
+def mean_timeseries_2nd_level(percent_change_r1, percent_change_r2):
+    import numpy as np
+    ts_1 = np.loadtxt(percent_change_r1)
+    ts_2 = np.loadtxt(percent_change_r2)
+
+    ts_2nd_level = np.mean([ts_1, ts_2], axis=0)
+
+    np.savetxt('mean_ts_10Hz_2nd_level.txt', ts_2nd_level)
+
+
+mean_timeseries_2nd_level = Node(name='mean_timeseries_2nd_level',
+                                 interface=Function(input_names=['percent_change_r1',
+                                                                 'percent_change_r2'],
+                                                    function=mean_timeseries_2nd_level))
+# ==========================================================================================================================================================
+
 
 stimulation_2nd_level.connect([
 
@@ -376,6 +395,8 @@ stimulation_2nd_level.connect([
 
 
 
+    (selectfiles, mean_timeseries_2nd_level, [('percent_change_r1', 'percent_change_r1'),
+                                              ('percent_change_r2', 'percent_change_r2')])
 
     # (flameo_fit_copes1, datasink, [('copes','copes1'),
     #                                ('var_copes', 'varcopes1')]),
