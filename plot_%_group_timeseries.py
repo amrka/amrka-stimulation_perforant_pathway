@@ -12,6 +12,7 @@
 def plot_av_percent_change(frequency, genotype):
 
     import os
+    import re
     import numpy as np
     import matplotlib.pyplot as plt
     from scipy import stats
@@ -19,10 +20,11 @@ def plot_av_percent_change(frequency, genotype):
 
     directory = '/media/amr/Amr_4TB/Work/stimulation/stimulation_3rd_level/{0}/timeseries'.format(
         frequency)
+    os.chdir(directory)
 
 # get all the names from the given directory
     filenames = list(os.listdir(directory))
-    list_ts_arrays = []
+    list_of_ts = []
 
 # use only the files belongs to the specific genotype
     for file in filenames:
@@ -62,7 +64,7 @@ def plot_av_percent_change(frequency, genotype):
 
     genotype_from_list = ntpath.basename(list_of_ts[0])[0]
     frequency_from_list = re.search('change_(.+?)_', list_of_ts[0])
-    frequency_from_list = frequency.group(1)
+    frequency_from_list = frequency_from_list.group(1)
 
 ###############################################################################################################################
     # Sanity check
@@ -94,3 +96,6 @@ def plot_av_percent_change(frequency, genotype):
 
     plt.savefig(
         "/Users/amr/Dropbox/thesis/stimulation/{0}_{0}_%_change_ts.svg".format(genotype, frequency), format='svg')
+
+
+plot_av_percent_change('40Hz', 'A')
