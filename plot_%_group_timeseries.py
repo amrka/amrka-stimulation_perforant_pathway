@@ -102,7 +102,7 @@ def plot_av_percent_change(frequency, genotype):
         plt.fill_between(filling_index, under_line, over_line, color='#e41a1c99', alpha=.2)
 
     plt.savefig(
-        "/Users/amr/Dropbox/thesis/stimulation/{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
+        "/Users/amr/Dropbox/thesis/stimulation/perforant_{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
     plt.close()
 
 
