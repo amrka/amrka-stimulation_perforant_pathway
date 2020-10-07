@@ -96,10 +96,10 @@ def plot_av_percent_change(frequency, genotype):
     plt.ylabel("% BOLD change", fontsize=18, fontname='Arial')
     if genotype == 'A':
         plt.plot(smooth_mean, color='#377eb899')
-        plt.fill_between(filling_index, under_line, over_line, color='#377eb899', alpha=.1)
+        plt.fill_between(filling_index, under_line, over_line, color='#377eb899', alpha=.2)
     else:
         plt.plot(smooth_mean, color='#e41a1c99')
-        plt.fill_between(filling_index, under_line, over_line, color='#e41a1c99', alpha=.1)
+        plt.fill_between(filling_index, under_line, over_line, color='#e41a1c99', alpha=.2)
 
     plt.savefig(
         "/Users/amr/Dropbox/thesis/stimulation/{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
