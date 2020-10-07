@@ -324,7 +324,7 @@ def mean_timeseries_2nd_level(percent_change_r1, percent_change_r2):
 
     ts_2nd_level = np.mean([ts_1, ts_2], axis=0)
 
-    np.savetxt('mean_ts_10Hz_2nd_level.txt', ts_2nd_level)
+    np.savetxt('mean_ts_40Hz_2nd_level.txt', ts_2nd_level)
 
 
 mean_timeseries_2nd_level = Node(name='mean_timeseries_2nd_level',
