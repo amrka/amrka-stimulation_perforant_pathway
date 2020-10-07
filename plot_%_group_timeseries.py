@@ -17,6 +17,7 @@ def plot_av_percent_change(frequency, genotype):
     import matplotlib.pyplot as plt
     from scipy import stats
     import ntpath
+    import pandas as pd
 
     directory = '/media/amr/Amr_4TB/Work/stimulation/stimulation_3rd_level/{0}/timeseries'.format(
         frequency)
@@ -41,6 +42,10 @@ def plot_av_percent_change(frequency, genotype):
             i = i + 1
 
     mean_ts = np.mean(list_ts_arrays, axis=0)
+    mean_ts_df = pd.DataFrame(mean_ts)
+    # smoothing for the signal
+    # the window size of here because the BOLD takes 5 sec to peak
+    smooth_mean = mean_ts_df.rolling(5).mean()
     sem_ts = stats.sem(list_ts_arrays, axis=0)  # sem as in standard error of the mean
 
     # mean plus or minus SEM
@@ -76,7 +81,7 @@ def plot_av_percent_change(frequency, genotype):
 
     stim = np.loadtxt(
         '/Users/amr/Dropbox/thesis/stimulation/Stimulation.txt')
-    plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
+    # plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
     # y_range = np.arange(-0.5, 0, 0.1)
 
     ax = plt.axes()
@@ -90,13 +95,11 @@ def plot_av_percent_change(frequency, genotype):
     plt.xlabel("Time (sec)", fontsize=18, fontname='Arial')
     plt.ylabel("% BOLD change", fontsize=18, fontname='Arial')
     if genotype == 'A':
-        plt.plot(mean_ts, color='#377eb899')
+        plt.plot(smooth_mean, color='#377eb899')
         plt.fill_between(filling_index, under_line, over_line, color='#377eb899', alpha=.1)
     else:
-        plt.plot(mean_ts, color='#e41a1c99')
+        plt.plot(smooth_mean, color='#e41a1c99')
         plt.fill_between(filling_index, under_line, over_line, color='#e41a1c99', alpha=.1)
-
-    plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
 
     plt.savefig(
         "/Users/amr/Dropbox/thesis/stimulation/{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
