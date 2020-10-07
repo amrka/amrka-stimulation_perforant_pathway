@@ -7,13 +7,27 @@
 # y title should be "% BOLD change"
 # time (Sec)
 
+# second modification is pass only the frequency and genotype and the script does the rest
 
-def plot_av_percent_change(list_of_ts):
+def plot_av_percent_change(frequency, genotype):
 
+    import os
     import numpy as np
     import matplotlib.pyplot as plt
     from scipy import stats
     import ntpath
+
+    directory = '/media/amr/Amr_4TB/Work/stimulation/stimulation_3rd_level/{0}/timeseries'.format(
+        frequency)
+
+# get all the names from the given directory
+    filenames = list(os.listdir(directory))
+    list_ts_arrays = []
+
+# use only the files belongs to the specific genotype
+    for file in filenames:
+        if file[0] == genotype:
+            list_of_ts.append(file)
 
     list_ts_arrays = []
     i = 0
@@ -42,13 +56,21 @@ def plot_av_percent_change(list_of_ts):
     # TODO one HRF
     # TODO Cluster branch
     # TODO download
-    # TODO filename of svg
+    # TODO filename of svg # DONE
     # A -> #377eb899
     # B -> #e41a1c99
 
-    genotype = ntpath.basename(list_of_ts[0])[0]
-    frequency = re.search('change_(.+?)_', list_of_ts[0])
-    frequency = frequency.group(1)
+    genotype_from_list = ntpath.basename(list_of_ts[0])[0]
+    frequency_from_list = re.search('change_(.+?)_', list_of_ts[0])
+    frequency_from_list = frequency.group(1)
+
+###############################################################################################################################
+    # Sanity check
+    if genotype == genotype_from_list and frequency == frequency_from_list:
+        print('########################correct###################')
+    else:
+        print('##########ERROR##########')
+###############################################################################################################################
 
     stim = np.loadtxt(
         '/media/amr/Amr_4TB/Work/stimulation/Stimulation_May_2019_ppt/Stimulation.csv')
