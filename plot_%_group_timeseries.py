@@ -75,15 +75,17 @@ def plot_av_percent_change(frequency, genotype):
 ###############################################################################################################################
 
     stim = np.loadtxt(
-        '/media/amr/Amr_4TB/Work/stimulation/Stimulation_May_2019_ppt/Stimulation.csv')
+        '/Users/amr/Dropbox/thesis/stimulation/Stimulation.txt')
+    plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
+    # y_range = np.arange(-0.5, 0, 0.1)
 
-    y_range = np.arange(-1, 0, 0.2)
-
-    plt.plot(stim[:, 1], drawstyle='steps-pre', color='red')
+    ax = plt.axes()
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
-    plt.yticks(y_range)
-    plt.ylim(0.5, -0.5)
+    # plt.yticks(y_range)
+    plt.ylim(-0.815, -0.795)
     plt.xlim(0, 150)
     plt.xlabel("Time (sec)", fontsize=18, fontname='Arial')
     plt.ylabel("% BOLD change", fontsize=18, fontname='Arial')
@@ -94,8 +96,18 @@ def plot_av_percent_change(frequency, genotype):
         plt.plot(mean_ts, color='#e41a1c99')
         plt.fill_between(filling_index, under_line, over_line, color='#e41a1c99', alpha=.1)
 
-    plt.savefig(
-        "/Users/amr/Dropbox/thesis/stimulation/{0}_{0}_%_change_ts.svg".format(genotype, frequency), format='svg')
+    plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
 
+    plt.savefig(
+        "/Users/amr/Dropbox/thesis/stimulation/{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
+    plt.close()
+
+
+plot_av_percent_change('10Hz', 'A')
+plot_av_percent_change('10Hz', 'B')
+
+plot_av_percent_change('20Hz', 'A')
+plot_av_percent_change('20Hz', 'B')
 
 plot_av_percent_change('40Hz', 'A')
+plot_av_percent_change('40Hz', 'B')
