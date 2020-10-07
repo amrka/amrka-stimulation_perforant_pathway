@@ -90,7 +90,7 @@ def plot_av_percent_change(frequency, genotype):
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     # plt.yticks(y_range)
-    plt.ylim(-0.815, -0.795)
+    plt.ylim(0.8, 0.8150)
     plt.xlim(0, 150)
     plt.xlabel("Time (sec)", fontsize=18, fontname='Arial')
     plt.ylabel("% BOLD change", fontsize=18, fontname='Arial')
