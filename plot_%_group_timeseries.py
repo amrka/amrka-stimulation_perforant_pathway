@@ -49,8 +49,8 @@ def plot_av_percent_change(frequency, genotype):
     sem_ts = stats.sem(list_ts_arrays, axis=0)  # sem as in standard error of the mean
 
     # mean plus or minus SEM
-    under_line = mean_ts - sem_ts
-    over_line = mean_ts + sem_ts
+    under_line = smooth_mean.iloc[:, 0] - sem_ts
+    over_line = smooth_mean.iloc[:, 0] + sem_ts
 
     # you need an index as the 1st arg of fill_between to determine where to put the shading
     filling_index = list(range(0, 150))
