@@ -118,21 +118,21 @@ ${out_dir}/B_${frequency}_stat_cropped_436.png + \
 ${out_dir}/B_${frequency}_stat_cropped_474.png  \
 ${out_dir}/B_${frequency}_perforant.png
 
-  #==============================================================================================
-  # now both two imges overlaid
-  # group A and B above
+#==============================================================================================
+# now both two imges overlaid
+# group A and B above
 
 for slice_no in {474,436,417,398,360,341,322,284};do
 
-  ${fsleyes} render  \
-  --scene ortho -no   --displaySpace world --hidex --hidey    -vl 169  124 ${slice_no} \
-  --hideCursor   --outfile    ${out_dir}/${frequency}_stat_${slice_no}.png   \
-  ${rambmc} --displayRange 50 210  \
-  ${out_dir}/A_${frequency}_rambmc.nii.gz --displayRange 3.1  3.1 \
-  ${out_dir}/B_${frequency}_rambmc.nii.gz --cmap viridis         --displayRange 3.1  3.1
+      ${fsleyes} render  \
+      --scene ortho -no   --displaySpace world --hidex --hidey    -vl 169  124 ${slice_no} \
+      --hideCursor   --outfile    ${out_dir}/${frequency}_stat_${slice_no}.png   \
+      ${rambmc} --displayRange 50 210  \
+      ${out_dir}/A_${frequency}_rambmc.nii.gz --cmap red  --displayRange 3.1  3.1 \
+      ${out_dir}/B_${frequency}_rambmc.nii.gz --cmap yellow          --displayRange 3.1  3.1
 
 
-   convert ${out_dir}/${frequency}_stat_${slice_no}.png -crop 740x500+30+50  ${out_dir}/${frequency}_stat_cropped_${slice_no}.png
+       convert ${out_dir}/${frequency}_stat_${slice_no}.png -crop 740x500+30+50  ${out_dir}/${frequency}_stat_cropped_${slice_no}.png
 done
 
 
