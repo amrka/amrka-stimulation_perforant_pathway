@@ -43,63 +43,65 @@ def plot_av_percent_change(frequency, genotype):
 
     mean_ts = np.mean(list_ts_arrays, axis=0)
     mean_ts_df = pd.DataFrame(mean_ts)
-    # smoothing for the signal
 
+    # smoothing for the signal
     smooth_mean = mean_ts_df.rolling(5).mean()
+    # remove NaN
+    smooth_mean = smooth_mean.fillna(smooth_mean.mean())
+    smooth_mean = smooth_mean.rename(columns={0: 'timeseries'})
+    # I want to make the x by sec (0:300) rather than by volumes (0:15)
+    time = np.arange(0, 300, 2)
+
+    # add another column to smooth_mean to serve as x axis time
+    smooth_mean['time'] = time
+
     sem_ts = stats.sem(list_ts_arrays, axis=0)  # sem as in standard error of the mean
 
     # mean plus or minus SEM
-    under_line = smooth_mean.iloc[:, 0] - sem_ts
-    over_line = smooth_mean.iloc[:, 0] + sem_ts
+    under_line = smooth_mean['timeseries'] - sem_ts
+    over_line = smooth_mean['timeseries'] + sem_ts
 
     # you need an index as the 1st arg of fill_between to determine where to put the shading
     filling_index = list(range(0, 150))
 
     # TODO Do not forget to put the stimulation protocol # DONE
-    # TODO limit the y axis, titles # DONE
-    # TODO cluster branch and CA3 scripts
-    # TODO different color for genotypes based on the first letter of the filenames (A or B) # DONE
-    # TODO save as svg # DONE
     # TODO one HRF
-    # TODO Cluster branch
-    # TODO download
-    # TODO filename of svg # DONE
-    # A -> #377eb899
-    # B -> #e41a1c99
 
+###############################################################################################################################
+    # Sanity check
     genotype_from_list = ntpath.basename(list_of_ts[0])[0]
     frequency_from_list = re.search('change_(.+?)_', list_of_ts[0])
     frequency_from_list = frequency_from_list.group(1)
 
-###############################################################################################################################
-    # Sanity check
     if genotype == genotype_from_list and frequency == frequency_from_list:
         print('########################correct###################')
     else:
         print('##########ERROR##########')
 ###############################################################################################################################
 
-    stim = np.loadtxt(
-        '/Users/amr/Dropbox/thesis/stimulation/Stimulation.txt')
+    # stim = np.loadtxt(
+    #     '/Users/amr/Dropbox/thesis/stimulation/Stimulation.txt')
     # plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
     # y_range = np.arange(-0.5, 0, 0.1)
 
     ax = plt.axes()
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
+
     plt.xticks(fontsize=14)
     plt.yticks(fontsize=14)
     # plt.yticks(y_range)
     plt.ylim(0.8, 0.820)
-    plt.xlim(0, 150)
+    plt.xlim(0, 298)
     plt.xlabel("Time (sec)", fontsize=18, fontname='Arial')
     plt.ylabel("% BOLD change", fontsize=18, fontname='Arial')
+
     if genotype == 'A':
-        plt.plot(smooth_mean, color='#377eb899')
-        plt.fill_between(filling_index, under_line, over_line, color='#377eb899', alpha=.2)
+        plt.plot(smooth_mean['time'], smooth_mean['timeseries'], color='#377eb899')
+        plt.fill_between(smooth_mean['time'], under_line, over_line, color='#377eb899', alpha=.2)
     else:
-        plt.plot(smooth_mean, color='#e41a1c99')
-        plt.fill_between(filling_index, under_line, over_line, color='#e41a1c99', alpha=.2)
+        plt.plot(smooth_mean['time'], smooth_mean['timeseries'], color='#e41a1c99')
+        plt.fill_between(smooth_mean['time'], under_line, over_line, color='#e41a1c99', alpha=.2)
 
     plt.savefig(
         "/Users/amr/Dropbox/thesis/stimulation/perforant_{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
