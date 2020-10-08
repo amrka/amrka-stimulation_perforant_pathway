@@ -146,6 +146,3 @@ ${out_dir}/${frequency}_stat_cropped_417.png + \
 ${out_dir}/${frequency}_stat_cropped_436.png + \
 ${out_dir}/${frequency}_stat_cropped_474.png  \
 ${out_dir}/combined_${frequency}_perforant.png
-
-
-rm ${out_dir}/*_???.png
