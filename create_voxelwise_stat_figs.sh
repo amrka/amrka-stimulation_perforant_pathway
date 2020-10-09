@@ -45,7 +45,11 @@ for slice_no in {474,436,417,398,360,341,322,284};do
     --scene ortho -no   --displaySpace world --hidex --hidey    -vl 169  124 ${slice_no} \
     --hideCursor   --outfile    ${out_dir}/A_${frequency}_stat_${slice_no}.png   \
     ${rambmc} --displayRange 50 210  \
+<<<<<<< HEAD
     ${out_dir}/A_${frequency}_rambmc.nii.gz --cmap red     --displayRange 3.1  7
+=======
+    ${out_dir}/A_${frequency}_rambmc.nii.gz --cmap red    --displayRange 3.1  7
+>>>>>>> 6b1261ade624eab78528c3f3fb2ed92bf1228314
 
 
      convert ${out_dir}/A_${frequency}_stat_${slice_no}.png -crop 740x500+30+50  ${out_dir}/A_${frequency}_stat_cropped_${slice_no}.png
@@ -100,7 +104,11 @@ for slice_no in {474,436,417,398,360,341,322,284};do
     --scene ortho -no   --displaySpace world --hidex --hidey    -vl 169  124 ${slice_no} \
     --hideCursor   --outfile    ${out_dir}/B_${frequency}_stat_${slice_no}.png   \
     ${rambmc} --displayRange 50 210  \
+<<<<<<< HEAD
     ${out_dir}/B_${frequency}_rambmc.nii.gz --cmap blue     --displayRange 3.1  7
+=======
+    ${out_dir}/B_${frequency}_rambmc.nii.gz --cmap blue    --displayRange 3.1  7
+>>>>>>> 6b1261ade624eab78528c3f3fb2ed92bf1228314
 
 
     convert ${out_dir}/B_${frequency}_stat_${slice_no}.png -crop 740x500+30+50  ${out_dir}/B_${frequency}_stat_cropped_${slice_no}.png
@@ -128,8 +136,13 @@ for slice_no in {474,436,417,398,360,341,322,284};do
       --scene ortho -no   --displaySpace world --hidex --hidey    -vl 169  124 ${slice_no} \
       --hideCursor   --outfile    ${out_dir}/${frequency}_stat_${slice_no}.png   \
       ${rambmc} --displayRange 50 210  \
+<<<<<<< HEAD
       ${out_dir}/A_${frequency}_rambmc.nii.gz --cmap red  --displayRange 3.1  7 \
       ${out_dir}/B_${frequency}_rambmc.nii.gz --cmap blue   --displayRange 3.1  7
+=======
+      ${out_dir}/A_${frequency}_rambmc.nii.gz --cmap red  --displayRange 3.1  3.1 \
+      ${out_dir}/B_${frequency}_rambmc.nii.gz --cmap blue          --displayRange 3.1  3.1
+>>>>>>> 6b1261ade624eab78528c3f3fb2ed92bf1228314
 
 
        convert ${out_dir}/${frequency}_stat_${slice_no}.png -crop 740x500+30+50  ${out_dir}/${frequency}_stat_cropped_${slice_no}.png
