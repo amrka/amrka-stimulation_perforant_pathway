@@ -78,11 +78,10 @@ def plot_av_percent_change(frequency, genotype):
     else:
         print('##########ERROR##########')
 ###############################################################################################################################
+# the stimulation file has changed. instead of 1 in place of stimulation, 0.8125(end range of y) was put
 
-    # stim = np.loadtxt(
-    #     '/Users/amr/Dropbox/thesis/stimulation/Stimulation.txt')
-    # plt.plot(stim[:, 1], drawstyle='steps-pre', color='black')
-    # y_range = np.arange(-0.5, 0, 0.1)
+    stim = np.loadtxt(
+        '/media/amr/Amr_4TB/Dropbox/thesis/stimulation/Stimulation.txt')
 
     ax = plt.axes()
     ax.spines['right'].set_visible(False)
@@ -97,22 +96,33 @@ def plot_av_percent_change(frequency, genotype):
     plt.ylabel("% BOLD change", fontsize=18, fontname='Arial')
 
     if genotype == 'A':
-        plt.plot(smooth_mean['time'], smooth_mean['timeseries'], color='#377eb899')
-        plt.fill_between(smooth_mean['time'], under_line, over_line, color='#377eb899', alpha=.2)
-    else:
-        plt.plot(smooth_mean['time'], smooth_mean['timeseries'], color='#e41a1c99')
-        plt.fill_between(smooth_mean['time'], under_line, over_line, color='#e41a1c99', alpha=.2)
+        # create a figure of A group timeseries with sem shading over the stimulation pattern
+        plt.plot(stim[:, 1], drawstyle='steps-pre', color='black', linewidth=0)
+        plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='gray')
+
+        plt.plot(smooth_mean['time'], smooth_mean['timeseries'], color='#e41a1c99', linewidth=1)
+        plt.fill_between(smooth_mean['time'], under_line, over_line, color='#e41a1c99', alpha=.3, linewidth=1)
+
+    elif genotype == 'B':
+        # create a figure of B group timeseries with sem shading over the stimulation pattern
+        plt.plot(stim[:, 1], drawstyle='steps-pre', color='black', linewidth=0)
+        plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='gray')
+
+        plt.plot(smooth_mean['time'], smooth_mean['timeseries'], color='#377eb899', linewidth=1)
+        plt.fill_between(smooth_mean['time'], under_line, over_line, color='#377eb899', alpha=.3, linewidth=1)
 
     plt.savefig(
-        "/Users/amr/Dropbox/thesis/stimulation/perforant_{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
+        "/media/amr/Amr_4TB/Dropbox/thesis/stimulation/perforant_{0}_{1}_%_change_ts.svg".format(genotype, frequency), format='svg')
     plt.close()
 
 
 plot_av_percent_change('10Hz', 'A')
 plot_av_percent_change('10Hz', 'B')
 
+
 plot_av_percent_change('20Hz', 'A')
 plot_av_percent_change('20Hz', 'B')
+
 
 plot_av_percent_change('40Hz', 'A')
 plot_av_percent_change('40Hz', 'B')
