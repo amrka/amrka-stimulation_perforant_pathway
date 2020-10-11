@@ -121,7 +121,7 @@ def plot_av_percent_change(frequency):
 
     # create a figure of A group timeseries with sem shading over the stimulation pattern
     plt.plot(stim[:, 1], drawstyle='steps-pre', color='black', linewidth=0)
-    plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='gray')
+    plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='#00000046')
 
     plt.plot(smooth_mean_A['time'], smooth_mean_A['timeseries'], color='#e41a1c', linewidth=1)
     plt.fill_between(smooth_mean_A['time'], under_line_A, over_line_A, color='#e41a1c', alpha=.3, linewidth=1)
@@ -147,7 +147,7 @@ def plot_av_percent_change(frequency):
 
     # create a figure of A group timeseries with sem shading over the stimulation pattern
     plt.plot(stim[:, 1], drawstyle='steps-pre', color='black', linewidth=0)
-    plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='gray')
+    plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='#00000046')
 
     plt.plot(smooth_mean_B['time'], smooth_mean_B['timeseries'], color='#377eb8', linewidth=1)
     plt.fill_between(smooth_mean_B['time'], under_line_B, over_line_B, color='#377eb8', alpha=.3, linewidth=1)
@@ -175,7 +175,7 @@ def plot_av_percent_change(frequency):
 
 
     plt.plot(stim[:, 1], drawstyle='steps-pre', color='black', linewidth=0)
-    plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='gray')
+    plt.fill_between(stim[:,0], stim[:, 1], step="pre", alpha=0.2, color='#00000046')
 
     plt.plot(smooth_mean_A['time'], smooth_mean_A['timeseries'], color='#e41a1c', linewidth=1)
     plt.fill_between(smooth_mean_A['time'], under_line_A, over_line_A, color='#e41a1c', alpha=.3, linewidth=1)
